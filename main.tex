@@ -1,0 +1,566 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.9.2 laurocesar
+%% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://abntex2.googlecode.com/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% Modelo modificado em 08/08/2022 por Gabriel Pietroluongo a fim de se
+% adequar ao formato de relatório de estágio obrigatório da UFES 
+% (Universidade Federal do Espírito Santo). 
+% Você pode me encontrar como @pietroluongo no GitHub ;)
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	french,				% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage[clean]{svg}
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Relatório Final de Estágio Supervisionado}
+\autor{Nome do aluno}
+\orientador{Nome do Supervisor}
+\coorientador{Jadir Eduardo Souza Lucas}
+\data{Agosto de 2022}
+\instituicao{UNIVERSIDADE FEDERAL DO ESPÍRITO SANTO\\CENTRO TECNOLÓGICO\\CURSO DE ENGENHARIA DE COMPUTAÇÃO}
+\tipotrabalho{Tese (Doutorado)}
+\local{Vitória}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Relatório Final de Estágio apresentado à UFES como requisito parcial da disciplina de Estágio Supervisionado do Curso de Engenharia de Computação.}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+\makeatletter
+\renewcommand{\folhaderostocontent}{
+\begin{center}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\columnwidth]{brasaooficialcolorido.png}
+\end{figure}
+\vspace*{}
+{\ABNTEXchapterfont\large\imprimirinstituicao}
+\vspace*{\fill}\vspace*{\fill}
+
+
+{\ABNTEXchapterfont\bfseries\Large\imprimirtitulo}
+
+
+\vspace*{\fill}
+\vspace*{\fill}
+\begin{flushright}
+\abntex@ifnotempty{\imprimirpreambulo}{%
+\hspace{.45\textwidth}
+\begin{minipage}{.5\textwidth}
+\SingleSpacing
+\imprimirpreambulo
+\end{minipage}%
+\end{flushright}
+\vspace*{\fill}
+}%
+\vspace*{\fill}
+{\imprimirlocal, \large\imprimirdata}
+\vspace*{1cm}
+\end{center}
+}
+\makeatother
+
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\folhaderostocontent
+% ---
+% ---
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
+% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
+% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
+% imagem da página assinada pela banca com o comando abaixo:
+%
+% \includepdf{folhadeaprovacao_final.pdf}
+%
+\begin{folhadeaprovacao}
+
+  \begin{center}
+    {\ABNTEXchapterfont\large\imprimirautor}
+
+    \vspace*{\fill}\vspace*{\fill}
+    \begin{center}
+      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+    \end{center}
+    \vspace*{\fill}
+    
+    \hspace{.45\textwidth}
+    \begin{minipage}{.5\textwidth}
+        \imprimirpreambulo
+    \end{minipage}%
+    \vspace*{\fill}
+   \end{center}
+   
+   \begin{flushright}
+       
+
+   \assinatura*{\textbf{\imprimirorientador} \\ Supervisor na Empresa Nome da Empresa} 
+   \assinatura*{\textbf{\imprimircoorientador} \\ Coordenador de Estágio na UFES}
+   \assinatura*{\textbf{\imprimirautor} \\ Estagiário}
+   
+   \end{flushright}
+      
+   \begin{center}
+    \vspace*{0.5cm}
+    Vitória,
+    {\large\imprimirdata}
+    \vspace*{1cm}
+  \end{center}
+  
+\end{folhadeaprovacao}
+
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+% ---
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{Lista de Figuras}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+\begin{siglas}
+  \item[ABNT] Associação Brasileira de Normas Técnicas
+  \item[abnTeX] ABsurdas Normas para TeX
+\end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+\begin{simbolos}
+  \item[$ \Gamma $] Letra grega Gama
+  \item[$ \Lambda $] Lambda
+  \item[$ \zeta $] Letra grega minúscula zeta
+  \item[$ \in $] Pertence
+\end{simbolos}
+% ---
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Introdução (exemplo de capítulo sem numeração, mas presente no Sumário)
+% ----------------------------------------------------------
+\chapter[Plano de estágio]{Plano de estágio}
+% ----------------------------------------------------------
+\section{Identificação do Aluno}
+
+\parindent=0pt
+
+Nome:\imprimirautor
+
+Código do Aluno na UFES:
+
+E-mail:
+
+\section{Empresa}
+Nome:
+
+Razão Social:
+
+CGC:
+
+Área de atuação:
+
+Endereço:
+
+Bairro:
+
+CEP:
+
+Cidade:
+
+Estado:
+
+Nome do responsável pelos estágios na empresa (Recursos Humanos, Recrutamento e Seleção etc.):
+
+Telefone da área responsável pelos estágios:
+
+\section{Estágio}
+Área de atuação:
+
+Setor:
+
+Descrição geral:
+
+Organograma: (indique, através de representação gráfica, a sua posição como estagiário dentro do organograma da empresa).
+
+Data de início do estágio:
+
+Data prevista para o fim do estágio:
+
+Período do dia em que estagia:
+
+Carga horária semanal:
+\section{Supervisor de Estágio na empresa}
+Nome:
+
+Formação acadêmica na graduação:
+
+Cargo:
+
+Departamento ou setor que trabalha:
+
+Responsabilidades do departamento ou setor que trabalha:
+
+Telefone:
+
+Fax:
+
+E-mail:
+
+\section{Atividades Programadas para o Estagiário}
+(Descreva o programa de trabalho do seu estágio, incluindo atividades e os resultados esperados.)
+
+\chapter[Organograma da Empresa]{Organograma da Empresa}
+
+\section{A empresa}
+(Faça um histórico sobre a empresa, indicando o ano de fundação e o número de
+funcionário).
+
+\section{Objeto de Produção da Empresa e Missão}
+(Apresente o que a empresa produz e a missão da mesma).
+
+\section{Organograma geral}
+(Indique, através de representação gráfica, o organograma da empresa).
+
+\section{Organograma Específico do Setor do Estágio}
+(Indique, através de representação gráfica, a sua posição como estagiário dentro do
+organograma da empresa).
+
+\section{Atribuições do Setor onde foi Desenvolvido o Estágio}
+(Indique o que é feito no setor onde fez o estágio).
+
+\section{Atribuições do Setor onde foi Desenvolvido o Estágio}
+(Indique o que é feito no setor onde fez o estágio).
+
+\section{Processo de Seleção para o Estágio}
+(Indique como foi o processo de seleção para o estágio).
+
+\chapter{Recursos disponíveis para a Realização do Estágio}
+
+\section{Ambiente de Trabalho}
+(Descreva o ambiente de trabalho da empresa).
+
+\section{Maquinas, Equipamentos e Softwares Utilizados}
+(Descreva tudo o que foi utilizado durante o seu trabalho na empresa).
+
+\section{Oficinas e Laboratórios}
+(Indique que oficinas e laboratórios utilizou na empresa).
+
+\section{Equipe de Trabalho}
+(Indique quantos foram e quais tarefas tiveram os integrantes da sua equipe de
+trabalho).
+
+\section{Inter-relação com Outras Áreas da Empresa}
+(Fale do seu relacionamento com outras áreas da empresa, tanto as técnicas como
+as administrativas).
+
+\chapter{Atribuições do estagiário}
+\section{Grau de Autonomia e Responsabilidade}
+(Fale sobre o grau de autonomia e a responsabilidade que a empresa lhe atribuiu).
+
+\section{Forma de Planejamento e Organização das Tarefas}
+(Indique como o seu supervisor planejou e organizou as tarefas para o seu estágio).
+
+\section{Forma de Executar e Implementar as Tarefas}
+(Indique os métodos utilizados para executar e implementar as tarefas do seu
+estágio).
+\section{Procedimento de Controle, Itens de Verificação e Indicadores de
+Desempenho}
+(Fale que instrumentos a empresa utilizou para verificar o seu desempenho).
+
+\section{Forma de Acompanhamento e Avaliação dos Resultados pelo
+Supervisor}
+(Fale como a empresa acompanhou a execução das suas tarefas).
+
+
+\chapter{Atividades desenvolvidas}
+\section{Atividades Desenvolvidas e Resultados Obtidos}
+
+(Como, muitas vezes, as atividades planejadas nem sempre são as desenvolvidas,
+descreva as atividades realmente desenvolvidas e cronograma real para sua execução.
+Indique também os resultados obtidos e o número de horas para cada tarefa. Acrescente
+mais linhas se precisar).
+
+\chapter{Comentários do Estagiário}
+\section{Adaptação ao Método de Trabalho da Empresa}
+(Indique como foi a sua adaptação ao método de trabalho da empresa).
+
+\section{Oportunidades de Desenvolvimento Profissional}
+(Fale sobre as oportunidades de desenvolvimento pessoal que a empresa lhe ofereceu e pode lhe oferecer no futuro).
+
+\section{Dificuldades Encontradas}
+(Identifique e apresenta as dificuldades encontradas durante o estágio).
+
+\section{Sugestões de Melhoria em Procedimento de Trabalho Observados}
+(Em função das dificuldades encontradas durante o estágio, faça algumas sugestões que poderiam melhorar o procedimento de trabalho adotado pela empresa no seu caso).
+
+\section*{Conclusões}
+\addcontentsline{toc}{chapter}{Conclusões}
+(Identifique e apresente os prós e contras do seu o estágio e, a partir disso, indique a sua impressão positiva ou negativa sobre o mesmo).
+
+% ----------------------------------------------------------
+% PARTE
+% ----------------------------------------------------------
+\chapter{Referências Bibliográficas}
+% ----------------------------------------------------------
+
+
+% ----------------------------------------------------------
+% Finaliza a parte no bookmark do PDF
+% para que se inicie o bookmark na raiz
+% e adiciona espaço de parte no Sumário
+% ----------------------------------------------------------
+%\phantompart
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{abntex2-modelo-references}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+\begin{apendicesenv}
+
+% Imprime uma página indicando o início dos apêndices
+% \partapendices
+
+% ----------------------------------------------------------
+\chapter{Título do Apêndice}
+% ----------------------------------------------------------
+
+Consiste em texto ou documento elaborado pelo autor, a fim de complementar sua argumentação, sem prejuízo da unidade nuclear do trabalho. Os apêndices devem ser identificados por letras maiúsculas consecutivas, seguidas de travessão e respectivo título.
+
+Inclua aqui os Relatórios Parciais, se for o caso.
+
+\end{apendicesenv}
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+\begin{anexosenv}
+
+% Imprime uma página indicando o início dos anexos
+% \partanexos
+
+% ---
+\chapter{Título do anexo}
+% ---
+Consiste em texto ou documento não elaborado pelo autor, que serve de fundamentação, comprovação e ilustração. Os anexos devem ser identificados por letras maiúsculas consecutivas, seguidas de travessão e respectivo título. Inclua aqui as fichas de avaliação do Supervisor de Estágio e do Professor Orientador de Estágio.
+
+\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+%\phantompart
+\printindex
+%---------------------------------------------------------------------
+
+\end{document}
